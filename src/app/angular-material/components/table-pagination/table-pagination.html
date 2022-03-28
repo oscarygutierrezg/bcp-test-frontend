@@ -1,0 +1,68 @@
+<div class="mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="exchangeRate">
+      <th class="label-principal" mat-header-cell *matHeaderCellDef> Tipo Cambio </th>
+      <td class="color-principal" mat-cell *matCellDef="let element"> {{element.exchangeRate}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="currencyFrom">
+      <th class="label-principal" mat-header-cell *matHeaderCellDef> Modena Origen </th>
+      <td class="color-principal" mat-cell *matCellDef="let element"> {{element.currencyFrom}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="currencyTo">
+      <th class="label-principal" mat-header-cell *matHeaderCellDef> Moneda Destino </th>
+      <td class="color-principal" mat-cell *matCellDef="let element"> {{element.currencyTo}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="amount">
+      <th class="label-principal" mat-header-cell *matHeaderCellDef>Monto </th>
+      <td class="color-principal" mat-cell *matCellDef="let element"> {{element.amount}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="rate">
+      <th class="label-principal" mat-header-cell *matHeaderCellDef>Tasa de Cambio </th>
+      <td class="color-principal" mat-cell *matCellDef="let element"> {{element.rate }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <th style="text-align: center;" class="label-principal" mat-header-cell *matHeaderCellDef> Acciones</th>
+      <td class="color-principal" mat-cell *matCellDef="let element">
+        <div class="btn-toolbar" role="toolbar" style="justify-content: space-evenly;">
+          <div class="btn-group" role="group">
+            <button (click)="edit(element.id)" matTooltip="Editar Currencyo" mat-mini-fab color="accent">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </div>
+        </div>
+      </td>
+    </ng-container>
+    <tr class="color-principal" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr class="color-principal" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+  <div style="    display: flex;
+  justify-content: center;">
+    <button [disabled]="changes?.first" mat-icon-button="" type="button" (click)="prev()"
+      class="mat-focus-indicator mat-tooltip-trigger mat-paginator-navigation-previous mat-icon-button mat-button-base mat-button-disabled"
+      ng-reflect-message="Previous page" ng-reflect-disabled="true" ng-reflect-position="above"
+      aria-label="Previous page" ><span class="mat-button-wrapper"><svg viewBox="0 0 24 24"
+          focusable="false" class="mat-paginator-icon">
+          <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+        </svg></span><span matripple="" class="mat-ripple mat-button-ripple mat-button-ripple-round"
+        ng-reflect-disabled="true" ng-reflect-centered="true"
+        ng-reflect-trigger="[object HTMLButtonElement]"></span><span class="mat-button-focus-overlay"></span></button>
+    <!--container-->
+    <button mat-icon-button="" type="button" [disabled]="changes?.last" (click)="next()"
+      class="mat-focus-indicator mat-tooltip-trigger mat-paginator-navigation-next mat-icon-button mat-button-base"
+      ng-reflect-message="Next page" ng-reflect-disabled="false" ng-reflect-position="above"
+      aria-label="Next page"><span class="mat-button-wrapper"><svg viewBox="0 0 24 24" focusable="false"
+          class="mat-paginator-icon">
+          <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+        </svg></span><span matripple="" class="mat-ripple mat-button-ripple mat-button-ripple-round"
+        ng-reflect-disabled="false" ng-reflect-centered="true"
+        ng-reflect-trigger="[object HTMLButtonElement]"></span><span class="mat-button-focus-overlay"></span></button>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="24.889" viewBox="0 0 28 24.889">
+    <defs>
+        <style>
+            .cls-1{fill:#368f41}
+        </style>
+    </defs>
+    <path id="tienda" d="M-87.222 288.865h-24.889v3.111h24.889zm1.555 15.556v-3.111l-1.555-7.778h-24.889l-1.556 7.778v3.111h1.556v9.333h15.555v-9.333h6.223v9.333h3.111v-9.333zm-14 6.222H-109v-6.222h9.333z" class="cls-1" transform="translate(113.667 -288.865)"/>
+</svg>

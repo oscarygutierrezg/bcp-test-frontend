@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="57" height="58" viewBox="0 0 57 58">
+  <g id="closed" transform="translate(-1683 -164)">
+    <ellipse id="Ellipse_13" data-name="Ellipse 13" cx="28.5" cy="29" rx="28.5" ry="29" transform="translate(1683 164)" fill="#368f41"/>
+    <g id="cerrar_filtro" data-name="cerrar filtro" transform="translate(1679 -41)">
+      <rect id="Rectangle_65" data-name="Rectangle 65" width="5.043" height="30.312" transform="translate(23.663 246.171) rotate(-135)" fill="#fff"/>
+      <rect id="Rectangle_66" data-name="Rectangle 66" width="5.02" height="30.335" transform="translate(44.996 242.447) rotate(135)" fill="#fff"/>
+    </g>
+  </g>
+</svg>

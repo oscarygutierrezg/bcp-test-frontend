@@ -1,0 +1,128 @@
+<div class="container-fluid " style="align-items: center;display: flex;flex-direction: column; padding: 15px;">
+  <h1 style="margin-bottom: 20px;">Datos Tipo de Cambio</h1>
+
+  <form *ngIf="changeForm" [formGroup]="changeForm" #formDir="ngForm">
+
+    <div [hidden]="formDir.submitted">
+
+      <div class="form-group ">
+        <div class="form-group-flex ">
+          <label class="label-principal" for="exchangeRate">Tipo Cambio</label>
+          <input [(ngModel)]="change.exchangeRate" id="exchangeRate" class="form-control" formControlName="exchangeRate"
+            required placeholder="Tipo Cambio...">
+        </div>
+        <div *ngIf="exchangeRate?.invalid && (exchangeRate?.dirty || exchangeRate?.touched)" class="alert alert-danger">
+          <div *ngIf="exchangeRate?.errors?.required">
+            Tipo Cambio es requerido.
+          </div>
+          <div *ngIf="exchangeRate?.errors?.minlength">
+            Tipo Cambio debe tener al menos 3 caracteres de largo.
+          </div>
+          <div *ngIf="exchangeRate?.errors?.maxlength">
+            Tipo Cambio no puede tener más de 20 caracteres de largo.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group ">
+
+
+        <div class="form-group-flex ">
+          <label class="label-principal" for="documentType">Moneda Origen</label>
+
+          <select [(ngModel)]="change.currencyFrom" class="form-control" formControlName="currencyFrom" required>
+            <option disabled selected value="">
+              Seleccione...</option>
+
+            <option *ngFor="let c of currencies" [value]="c.id">
+              {{c.name}} </option>
+          </select>
+        </div>
+
+        <div *ngIf="currencyFrom?.invalid && currencyFrom?.touched" class="alert alert-danger">
+          <div *ngIf="currencyFrom?.errors?.required">Moneda origen es requerida.</div>
+        </div>
+      </div>
+
+      <div class="form-group ">
+
+
+        <div class="form-group-flex ">
+          <label class="label-principal" for="documentType">Moneda Destino</label>
+
+          <select [(ngModel)]="change.currencyTo" class="form-control" formControlName="currencyTo" required>
+            <option disabled selected value="">
+              Seleccione...</option>
+
+            <option *ngFor="let c of currencies" [value]="c.id">
+              {{c.name}} </option>
+          </select>
+        </div>
+
+        <div *ngIf="currencyTo?.invalid && currencyTo?.touched" class="alert alert-danger">
+          <div *ngIf="currencyTo?.errors?.required">Moneda destino es requerida.</div>
+        </div>
+      </div>
+
+
+      <div class="form-group ">
+
+
+        <div class="form-group-flex ">
+          <label class="label-principal" for="birthDate">Monto</label>
+          <input appNumberOnly [(ngModel)]="change.amount" type="number" name="quantity" min="1" max="999999999"
+            class="form-control" formControlName="amount" required placeholder="Monto...">
+        </div>
+        <div *ngIf="amount?.invalid && amount?.touched" class="alert alert-danger">
+          <div *ngIf="amount?.errors?.required">Monto es requerido.</div>
+
+          <div *ngIf="amount?.errors?.min">
+            Monto mayor o igual que 1.
+          </div>
+          <div *ngIf="amount?.errors?.max">
+            Monto menor o igual que 9999999.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group ">
+
+
+        <div class="form-group-flex ">
+          <label class="label-principal" for="birthDate">Tasa</label>
+          <input appNumberOnly [(ngModel)]="change.rate" type="number" name="quantity" min="1" max="999999999"
+            class="form-control" formControlName="rate" required placeholder="Tasa...">
+        </div>
+        <div *ngIf="rate?.invalid && rate?.touched" class="alert alert-danger">
+          <div *ngIf="rate?.errors?.required">Tasa es requerida.</div>
+
+          <div *ngIf="rate?.errors?.min">
+            Tasa mayor o igual que 1.
+          </div>
+          <div *ngIf="amount?.errors?.max">
+            Tasa menor o igual que 9999999.
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="flex-div">
+      <div class="btn-group" role="group">
+        <button type="button" class="btn  btn-primary" (click)="goHome()">
+          Volver
+        </button>
+      </div>
+
+      <div class="btn-group" role="group">
+        <button *ngIf="!idChange" (click)="guardar()" type="button" class="btn btn-success "
+          [disabled]="changeForm.invalid">
+          Guardar
+        </button>
+        <button *ngIf="idChange" (click)="guardar()" type="button" class="btn btn-success "
+          [disabled]="changeForm.invalid">
+          Actualizar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

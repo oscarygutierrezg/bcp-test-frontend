@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="content ">
+    <div class="flex-div ">
+      <h1 style="    color: #002A8D;
+      font-weight: 600;margin-top: 70px">Inicio Sesión</h1>
+    </div>
+    <form (ngSubmit)="onSubmit()"  [formGroup]="loginForm">
+      <div class="form-group">
+
+
+        <div class="input-group">
+          <div class="input-group-append">
+            <span class="input-group-text custom-span material-icons">
+              email
+            </span>
+          </div>
+
+          <input type="email" formControlName="username" class="form-control" 
+          value="A"
+            [ngClass]="{ 'is-invalid': f.username.invalid && (f.username.dirty || f.username.touched) }"
+            placeholder="Correo electrónico" />
+        </div>
+        <div *ngIf="f.username?.invalid && (f.username.dirty || f.username.touched)" class="alert alert-danger">
+          <div *ngIf="f.username?.errors?.required">
+            {{'EMAIL' }} {{'IS' }} {{'REQUIRED' }}.
+          </div>
+
+          <div *ngIf="f.username.errors?.email">
+            {{'EMAIL' }} {{'NOT VALID' }}.
+
+          </div>
+
+
+        </div>
+
+      </div>
+      <div class="form-group">
+
+
+        <div class="input-group">
+          <div class="input-group-append">
+            <span class="input-group-text custom-span material-icons">
+              lock
+            </span>
+          </div>
+
+          <input type="password" formControlName="password" class="form-control"
+            [ngClass]="{ 'is-invalid': f.password.invalid && (f.password.dirty || f.password.touched)}"
+            placeholder="Contraseña" />
+        </div>
+        <div *ngIf="f.password.invalid && (f.password.dirty || f.password.touched)" class="alert alert-danger">
+          <div *ngIf="f.password.errors?.required">
+            {{'PASSWORD' }} {{'IS' }} {{'REQUIREDA' }}.
+          </div>
+        </div>
+
+
+      </div>
+      <div class="form-group div-footer">
+        <button type="submit"
+          class="btn-principal  btn btn-primary btn-lg btn-block primary-button">{{'LOG IN'}}
+        </button>
+      </div>
+    </form>
+  </div>
+  <div class="shape"></div>
+</div>
