@@ -13,6 +13,29 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 
+
+input[type="text"],
+input[type="password"],
+input[type="email"]{
+  background-color: #f8fbf9 !important;
+}
+
+
+::-webkit-input-placeholder { /* Edge */
+    color: rgba(0, 42, 141, 50%);
+  }
+  
+  
+  :-ms-input-placeholder { /* Internet Explorer */
+    color: rgba(0, 42, 141, 50%);
+  }
+  
+  ::placeholder {
+    color: rgba(0, 42, 141, 50%);
+  }
+
+
+
 .label-principal{
   color: #002A8D;
     font-weight: bold;

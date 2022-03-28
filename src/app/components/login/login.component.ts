@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
     constructor(
         private formBuilder: FormBuilder,
         private userService: UserService,
-        private route: ActivatedRoute,
         private dialog: MatDialog,
         private router: Router,
     ) {
@@ -66,10 +65,18 @@ export class LoginComponent implements OnInit {
       this.user.password = this.loginForm.get('password')?.value;
       this.userService.authenticate(this.user).subscribe(
             (result) => {
-              localStorage.setItem('isLoggedin', 'true');
-              localStorage.setItem('token', result.token);
-              this.reiniciarForm();
-              this.router.navigate(['/changes']);
+              JSON.stringify(result)
+              if(result){
+                localStorage.setItem('isLoggedin', 'true');
+                localStorage.setItem('token', result.token);
+                this.reiniciarForm();
+                this.router.navigate(['/changes']);
+              }
+              else{
+                this.showModal('Error en login', JSON.stringify(result));
+          
+              }
+            
             },
             (error) => {
               console.log(error);

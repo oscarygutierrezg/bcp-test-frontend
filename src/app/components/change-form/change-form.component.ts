@@ -85,7 +85,7 @@ export class ChangeFormComponent implements OnInit, OnDestroy {
       this.currencyToCtrl = new FormControl(this.change?.currencyTo, [
         Validators.required
       ]);
-      this.rateCtrl = new FormControl(this.change?.rate, [Validators.required, Validators.min(1), Validators.max(9999999)]);
+      this.rateCtrl = new FormControl(this.change?.rate, [Validators.required, Validators.max(9999999)]);
       this.amountCtrl = new FormControl(this.change?.rate, [Validators.required, Validators.min(1), Validators.max(9999999)]);
     
     return new  FormGroup({
@@ -117,8 +117,19 @@ export class ChangeFormComponent implements OnInit, OnDestroy {
   }
 
 
+test(){
+  if(this.change.currencyFrom===this.change.currencyTo){
+    this.showModal('Las monedas origen y destino deben ser diferentes','');
+    return;
+  }
+}
+
   guardar() {
     console.log('Change',JSON.stringify(this.change));
+    if(this.change.currencyFrom===this.change.currencyTo){
+      this.showModal('Las monedas origen y destino deben ser diferentes', '');
+      return;
+    }
     if (this.idChange) {
       this.onConfirmUpdate();
     } else {
@@ -131,6 +142,8 @@ export class ChangeFormComponent implements OnInit, OnDestroy {
         });
     }
   }
+
+  
 
   onConfirmUpdate() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {

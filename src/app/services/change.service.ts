@@ -32,6 +32,22 @@ export class ChangeService {
     );
   }
 
+  createHttpOptions  () {
+    return {  headers: new HttpHeaders({ 'Content-Type': 'application/json',  
+    'Authorization':'Bearer ' +
+    localStorage.getItem('token')
+  
+  })
+  }
+  }
+
+  createAuthorizationHeader(headers: Headers) {
+    headers.append('Authorization', 'Bearer ' +
+    localStorage.getItem('token')); 
+    headers.append('Content-Type', 'application/json'); 
+  }
+
+
   updateChange(change: Change): Observable<any> {
     return this.http.put(environment.api + this.changeUrl+ '/' + change.id , change ).pipe(
       tap(_ => this.log(`updated Change id=${JSON.stringify(Change)}`)),
@@ -40,7 +56,9 @@ export class ChangeService {
   }
 
   getChanges(page: number =0, size: number = 20): Observable<PageChange> {
-    return this.http.get<PageChange>(`${environment.api}${this.changeUrl}?&page=${page}&size=${size}`)
+    let headers = new Headers();
+    this.createAuthorizationHeader(headers);
+    return this.http.get<PageChange>(`${environment.api}${this.changeUrl}?&page=${page}&size=${size}`,this.createHttpOptions())
       .pipe(
         tap(_ => {
           this.changesChangeObs.next(_);

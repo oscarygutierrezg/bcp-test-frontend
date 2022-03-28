@@ -50,7 +50,7 @@
         <div class="form-group-flex ">
           <label class="label-principal" for="documentType">Moneda Destino</label>
 
-          <select [(ngModel)]="change.currencyTo" class="form-control" formControlName="currencyTo" required>
+          <select [(ngModel)]="change.currencyTo" class="form-control" formControlName="currencyTo" required (change)="test()">
             <option disabled selected value="">
               Seleccione...</option>
 
@@ -96,9 +96,6 @@
         <div *ngIf="rate?.invalid && rate?.touched" class="alert alert-danger">
           <div *ngIf="rate?.errors?.required">Tasa es requerida.</div>
 
-          <div *ngIf="rate?.errors?.min">
-            Tasa mayor o igual que 1.
-          </div>
           <div *ngIf="amount?.errors?.max">
             Tasa menor o igual que 9999999.
           </div>
